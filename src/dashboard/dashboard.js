@@ -1,6 +1,9 @@
 import React from 'react';
 import ChatListComponent from '../chatlist/chatList'
-
+import { Button, withStyles } from '@material-ui/core';
+import styles from './styles';
+import ChatViewComponent from '../chatview/chatview';
+// import withUnmounted from '@ishawnwang/withunmounted';
 const firebase = require("firebase");
 
 class DashboardComponent extends React.Component {
@@ -13,30 +16,45 @@ class DashboardComponent extends React.Component {
       chats: []
     }
   }
+  // hasUnmounted = false;
+
   render() {
+    const { classes } = this.props;
     return (
       <div>
-        <div>Hello from dashboard</div>
         <ChatListComponent
           history={this.props.history}
           newChatBtnFn={this.newChatBtnClicked}
           selectChatFn={this.selectChat}
           chats={this.state.chats}
           userEmail={this.state.email}
-          selectedChatIndex={this.state.selectedChat}
-        >
-        </ChatListComponent>
+          selectedChatIndex={this.state.selectedChat}></ChatListComponent>
+        {
+          this.state.newChatFormVisible ?
+          null :
+          <ChatViewComponent
+            user={this.state.email}
+            chat={this.state.chats[this.state.selectedChat]}></ChatViewComponent>
+        }
+        <Button className={classes.signOutBtn} onClick={this.signOut}>Sign out</Button>
       </div>
     )
   }
 
-  selectChat = (chatIndex) => {
-    console.log('selected a chat:', chatIndex);
+  signOut = () => firebase.auth().signOut();
+
+  selectChat = async (chatIndex) => {
+    await this.setState({ selectedChat: chatIndex, newChatFormVisible: false });
   }
 
   newChatBtnClicked = () => this.setState({ newChatFormVisible: true, selectedChat: null });
 
   componentDidMount = () => {
+    // if (this.hasUnmounted) {
+    //     // check hasUnmounted flag
+    //     return;
+    //   }
+
     firebase.auth().onAuthStateChanged(async _usr => {
       if (!_usr)
         this.props.history.push('/login');
@@ -49,12 +67,12 @@ class DashboardComponent extends React.Component {
             const chats = res.docs.map(_doc => _doc.data());
             await this.setState({
               email: _usr.email,
-              chats: chats
+              chats: chats,
+              friends: []
             });
-            console.log(this.state)
           })
       }
     })
   }
 };
-export default DashboardComponent;
+export default withStyles(styles)(DashboardComponent);

@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 const firebase = require("firebase");
 
 class SignupComponent extends React.Component {
+
   constructor() {
     super();
     this.state = {
@@ -21,28 +22,30 @@ class SignupComponent extends React.Component {
       signupError: ''
     };
   }
+
   render() {
+
     const { classes } = this.props;
 
     return (
       <main className={classes.main}>
         <CssBaseline/>
         <Paper className={classes.paper}>
-          <Typography component='h1' variant='h5'>
-            sign up!
+          <Typography component="h1" variant="h5">
+            Sign Up!
           </Typography>
           <form onSubmit={(e) => this.submitSignup(e)} className={classes.form}>
             <FormControl required fullWidth margin='normal'>
-              <InputLabel htmlFor='signup-email-input'>Enter your email</InputLabel>
-              <Input autoComplete='email' onChange={(e) => this.userTyping('email', e)}autoFocus id='signup-email-input'></Input>
+              <InputLabel htmlFor='signup-email-input'>Enter Your Email</InputLabel>
+              <Input autoComplete='email' autoFocus onChange={(e) => this.userTyping('email', e)} id='signup-email-input'></Input>
             </FormControl>
             <FormControl required fullWidth margin='normal'>
-              <InputLabel htmlFor='signup-password-input'>Create a password</InputLabel>
-              <Input type='password' onChange={(e) => this.userTyping('password', e)} id='signup-password-input'></Input>
+              <InputLabel htmlFor='signup-password-input'>Create A Password</InputLabel>
+              <Input type="password" onChange={(e) => this.userTyping('password', e)} id='signup-password-input'></Input>
             </FormControl>
             <FormControl required fullWidth margin='normal'>
-              <InputLabel htmlFor='password-confirmationinput'>Confirm your password</InputLabel>
-              <Input type='password' onChange={(e) => this.userTyping('passwordConfirmation', e)} id='signup-password-confirmation'></Input>
+              <InputLabel htmlFor='signup-password-confirmation-input'>Confirm Your Password</InputLabel>
+              <Input type="password" onChange={(e) => this.userTyping('passwordConfirmation', e)} id='signup-password-confirmation-input'></Input>
             </FormControl>
             <Button type='submit' fullWidth variant='contained' color='primary' className={classes.submit}>Submit</Button>
           </form>
@@ -50,37 +53,42 @@ class SignupComponent extends React.Component {
             this.state.signupError ?
             <Typography className={classes.errorText} component='h5' variant='h6'>
               {this.state.signupError}
-            </Typography> : null
+            </Typography> :
+            null
           }
-          <Typography component='h5' variant='h6' className={classes.hasAccountHeader}>Already have account?</Typography>
-          <Link className={classes.logInLink} to='/login'>Log in!</Link>
-          </Paper>
+          <h5 className={classes.hasAccountHeader}>Already Have An Account?</h5>
+          <Link className={classes.logInLink} to='/login'>Log In!</Link>
+        </Paper>
       </main>
-    )
+    );
+  }
+
+  userTyping = (whichInput, event) => {
+    switch (whichInput) {
+      case 'email':
+        this.setState({ email: event.target.value });
+        break;
+
+      case 'password':
+        this.setState({ password: event.target.value });
+        break;
+
+      case 'passwordConfirmation':
+        this.setState({ passwordConfirmation: event.target.value });
+        break;
+
+      default:
+        break;
+    }
   }
 
   formIsValid = () => this.state.password === this.state.passwordConfirmation;
 
-  userTyping = (type, e) => {
-    switch (type) {
-      case 'email':
-        this.setState({ email: e.target.value });
-        break;
-      case 'password':
-        this.setState({ password: e.target.value });
-        break;
-      case 'passwordConfirmation':
-        this.setState({ passwordConfirmation: e.target.value });
-        break;
-      default:
-      break;
-    }
-  }
-
   submitSignup = (e) => {
-    e.preventDefault();
-    if (!this.formIsValid()) {
-      this.setState({ signupError: 'Passwords do not match' })
+    e.preventDefault(); // This is to prevent the automatic refreshing of the page on submit.
+
+    if(!this.formIsValid()) {
+      this.setState({ signupError: 'Passwords do not match' });
       return;
     }
 
@@ -89,7 +97,9 @@ class SignupComponent extends React.Component {
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(authRes => {
         const userObj = {
-          email: authRes.user.email
+          email: authRes.user.email,
+          friends: [],
+          messages: []
         };
         firebase
           .firestore()
@@ -97,16 +107,16 @@ class SignupComponent extends React.Component {
           .doc(this.state.email)
           .set(userObj)
           .then(() => {
-            this.props.history.push('/dashboard')
-          }, dbError => {
-            console.log(dbError);
-            this.setState({ dbError: 'Failed to add user' })
-          })
-      },authError => {
-        console.log(authError);
-        this.setState({ signupError: 'Failed to add user' })
-      })
-  }
-};
+            this.props.history.push('/dashboard');
+        }, dbErr => {
+          console.log('Failed to add user to the database: ', dbErr);
+          this.setState({ signupError: 'Failed to add user' });
+        });
+    }, authErr => {
+      console.log('Failed to create user: ', authErr);
+      this.setState({ signupError: 'Failed to add user' });
+    });
+  };
+}
 
 export default withStyles(styles)(SignupComponent);
