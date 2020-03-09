@@ -3,9 +3,9 @@ import ChatListComponent from '../chatlist/chatList'
 import { Button, withStyles } from '@material-ui/core';
 import styles from './styles';
 import ChatViewComponent from '../chatview/chatview';
-// import withUnmounted from '@ishawnwang/withunmounted';
+import ChatTextBoxComponent from '../chattextbox/chattextbox';
+import NewChatComponent from '../newchat/newchat'
 const firebase = require("firebase");
-
 class DashboardComponent extends React.Component {
   constructor() {
     super();
@@ -16,7 +16,6 @@ class DashboardComponent extends React.Component {
       chats: []
     }
   }
-  // hasUnmounted = false;
 
   render() {
     const { classes } = this.props;
@@ -36,6 +35,14 @@ class DashboardComponent extends React.Component {
             user={this.state.email}
             chat={this.state.chats[this.state.selectedChat]}></ChatViewComponent>
         }
+        {
+          this.state.selectedChat !== null && !this.state.newChatFormVisible ?
+          <ChatTextBoxComponent submitMessageFn={this.submitMessage}></ChatTextBoxComponent> :
+          null
+        }
+        {
+          this.state.newChatFormVisible ? <NewChatComponent goToChatFn={this.goToChat} newChatSubmitFn={this.newChatSubmit}> </NewChatComponent> : null
+        }
         <Button className={classes.signOutBtn} onClick={this.signOut}>Sign out</Button>
       </div>
     )
@@ -45,16 +52,71 @@ class DashboardComponent extends React.Component {
 
   selectChat = async (chatIndex) => {
     await this.setState({ selectedChat: chatIndex, newChatFormVisible: false });
+    this.messageRead();
+  }
+  submitMessage = (msg) => {
+    const docKey = this.buildDocKey(this.state.chats[this.state.selectedChat].users.filter(_usr => _usr !== this.state.email)[0]);
+    firebase
+      .firestore()
+      .collection('chats')
+      .doc(docKey)
+      .update({
+        messages: firebase.firestore.FieldValue.arrayUnion({
+          sender: this.state.email,
+          message: msg,
+          timestamp: Date.now()
+        }),
+        receiverHasRead: false
+      });
   }
 
-  newChatBtnClicked = () => this.setState({ newChatFormVisible: true, selectedChat: null });
+  buildDocKey = (friend) => [this.state.email, friend].sort().join(':');
+
+ newChatBtnClicked = () => this.setState({ newChatFormVisible: true, selectedChat: null });
+
+  clickedChatWhereNotSender = (chatIndex) => this.state.chats[chatIndex].messages[this.state.chats[chatIndex].messages.length -1].sender !== this.state.email;
+
+  messageRead = () => {
+    const docKey = this.buildDocKey(this.state.chats[this.state.selectedChat].users.filter(_usr => _usr !== this.state.email)[0]);
+    if(this.clickedChatWhereNotSender(this.state.selectedChat)) {
+      firebase
+        .firestore
+        .collection('chats')
+        .doc(docKey)
+        .update({ receiverHasRead: true })
+    } else {
+      console.log('clicked message, user was sender');
+    }
+  }
+  goToChat = async(docKey, message) => {
+    const usersInChat = docKey.split(':');
+    const chat = this.state.chats.find(_chat => usersInChat.every(_user => _chat.users.includes(_user)));
+    this.setState({ newChatFormVisible: false });
+    await this.selectChat(this.state.chats.indexOf(chat));
+    this.submitMessage(message);
+  }
+
+  newChatSubmit = async (chatObj) => {
+    const docKey = this.buildDocKey(chatObj.sendTo);
+    await
+      firebase
+        .firestore()
+        .collection('chats')
+        .doc(docKey)
+        .set({
+          messages: [{
+            message: chatObj.message,
+            sender: this.state.email
+          }],
+          users: [this.state.email, chatObj.sendTo],
+          receiverHasRead: false
+        })
+    this.setState({ newChatFormVisible: false });
+    this.selectChat(this.state.chats.length - 1);
+  }
+
 
   componentDidMount = () => {
-    // if (this.hasUnmounted) {
-    //     // check hasUnmounted flag
-    //     return;
-    //   }
-
     firebase.auth().onAuthStateChanged(async _usr => {
       if (!_usr)
         this.props.history.push('/login');
