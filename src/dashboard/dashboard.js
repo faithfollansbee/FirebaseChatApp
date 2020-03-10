@@ -72,7 +72,7 @@ class DashboardComponent extends React.Component {
 
   buildDocKey = (friend) => [this.state.email, friend].sort().join(':');
 
- newChatBtnClicked = () => this.setState({ newChatFormVisible: true, selectedChat: null });
+  newChatBtnClicked = () => this.setState({ newChatFormVisible: true, selectedChat: null });
 
   clickedChatWhereNotSender = (chatIndex) => this.state.chats[chatIndex].messages[this.state.chats[chatIndex].messages.length -1].sender !== this.state.email;
 
@@ -80,7 +80,7 @@ class DashboardComponent extends React.Component {
     const docKey = this.buildDocKey(this.state.chats[this.state.selectedChat].users.filter(_usr => _usr !== this.state.email)[0]);
     if(this.clickedChatWhereNotSender(this.state.selectedChat)) {
       firebase
-        .firestore
+        .firestore()
         .collection('chats')
         .doc(docKey)
         .update({ receiverHasRead: true })

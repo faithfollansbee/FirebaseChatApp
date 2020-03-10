@@ -37,7 +37,7 @@ class LoginComponent extends React.Component {
               <InputLabel htmlFor='login-password-input'>Enter your password </InputLabel>
               <Input type='password' id='login-password-input' onChange={(e) => this.userTyping('password', e)}></Input>
             </FormControl>
-            <Button type='submit' fullWidth variant='contained' color='primary' className={classes.submit}>Login</Button>
+            <Button type='submit' fullWidth variant='contained' className={classes.submit}>Login</Button>
           </form>
           {
             this.state.loginError ?

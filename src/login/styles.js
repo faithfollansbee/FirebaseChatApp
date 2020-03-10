@@ -23,6 +23,7 @@ const styles = theme => ({
   },
   submit: {
     marginTop: theme.spacing(3),
+    backgroundColor: '#CAEBF2'
   },
   noAccountHeader: {
     paddingTop: '30px',

@@ -1,5 +1,6 @@
 const styles = theme => ({
   main: {
+    backgroundColor: '#EEEBDA',
     width: 'auto',
     display: 'block',
     marginLeft: theme.spacing(10),
@@ -22,7 +23,7 @@ const styles = theme => ({
     size: '30px',
     width: '100%',
     textDecoration: 'none',
-    color: '#303f9f',
+    color: '#D8765C',
     fontWeight: 'bolder'
   }
 });

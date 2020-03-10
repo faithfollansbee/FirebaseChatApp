@@ -32,7 +32,7 @@ const styles = theme => ({
     boxSizing: 'border-box',
     wordWrap: 'break-word',
     marginTop: '10px',
-    backgroundColor: '#D8765C',
+    backgroundColor: '#C2D5DA',
     color: 'white',
     width: '300px',
     borderRadius: '10px'
@@ -41,7 +41,7 @@ const styles = theme => ({
   chatHeader: {
     width: 'calc(100% - 301px)',
     height: '50px',
-    backgroundColor: '#EACBCB',
+    backgroundColor: '#A9A9A9',
     position: 'fixed',
     marginLeft: '301px',
     fontSize: '18px',

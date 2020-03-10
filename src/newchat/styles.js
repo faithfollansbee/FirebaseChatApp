@@ -25,7 +25,7 @@ const styles = theme => ({
   },
   submit: {
     marginTop: theme.spacing(3),
-    background: '#EACBCB'
+    background: '#D8765C '
   },
   errorText: {
     color: 'red',
