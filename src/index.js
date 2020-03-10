@@ -6,8 +6,11 @@ import * as serviceWorker from './serviceWorker';
 import LoginComponent from './login/login';
 import SignupComponent from './signup/signup';
 import DashboardComponent from './dashboard/dashboard';
+import LandingComponent from './landing/landing'
+import App from './app'
+import firebase from 'firebase/app';
 
-const firebase = require("firebase");
+// const firebase = require("firebase");
 require("firebase/firestore");
 
 firebase.initializeApp({
@@ -24,9 +27,10 @@ firebase.initializeApp({
 const routing = (
   <Router>
     <div id='routing-container'>
-      <Route path='/login' component={LoginComponent}></Route>
-      <Route path='/signup' component={SignupComponent}></Route>
-      <Route path='/dashboard' component={DashboardComponent}></Route>
+      <Route exact path='/' component={LandingComponent}></Route>
+      <Route exact path='/login' component={LoginComponent}></Route>
+      <Route exact path='/signup' component={SignupComponent}></Route>
+      <Route exact path='/dashboard' component={DashboardComponent}></Route>
     </div>
   </Router>
 );

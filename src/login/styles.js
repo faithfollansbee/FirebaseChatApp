@@ -25,13 +25,21 @@ const styles = theme => ({
     marginTop: theme.spacing(3),
   },
   noAccountHeader: {
-    width: '100%'
+    paddingTop: '30px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   signUpLink: {
     width: '100%',
+    padding: '5px',
     textDecoration: 'none',
     color: '#303f9f',
-    fontWeight: 'bolder'
+    fontWeight: 'bolder',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   errorText: {
     color: 'red',

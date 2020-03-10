@@ -18,7 +18,7 @@ class ChatListComponent extends React.Component {
     if (this.props.chats.length > 0) {
       return (
         <main className={classes.root}>
-          <Button onClick={this.newChat} variant='contained' fullWidth color='primary' className={classes.newChatBtn}> new message </Button>
+          <Button onClick={this.newChat} variant='contained' fullWidth className={classes.newChatBtn}> new message </Button>
             <List>
               {
                 this.props.chats.map((_chat, _index) => {

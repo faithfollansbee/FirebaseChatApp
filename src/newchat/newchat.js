@@ -29,7 +29,7 @@ class NewChatComponent extends React.Component {
               <InputLabel htmlFor='new-chat-message'>Enter your message</InputLabel>
               <Input required className={classes.input} onChange={(e) => this.userTyping('message', e)} id='new-chat-message'></Input>
             </FormControl>
-            <Button type='submit' fullWidth variant='contained' color='primary' className={classes.submit} onClick={this.submitNewChat}>send</Button>
+            <Button type='submit' fullWidth variant='contained' className={classes.submit} onClick={this.submitNewChat}>send</Button>
           </form>
       </Paper>
 

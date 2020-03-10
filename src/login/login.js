@@ -47,7 +47,7 @@ class LoginComponent extends React.Component {
             null
           }
           <Typography component='h5' variant='h6' className={classes.noAccountHeader}> Don't have an account? </Typography>
-          <Link classes={classes.signUpLink} to='/signup'>Sign up</Link>
+          <Link className={classes.signUpLink} to='/signup'>Sign up!</Link>
         </Paper>
       </main>
     )
@@ -77,4 +77,5 @@ class LoginComponent extends React.Component {
       });
   }
 };
+
 export default withStyles(styles)(LoginComponent);

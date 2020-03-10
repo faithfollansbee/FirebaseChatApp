@@ -25,13 +25,22 @@ const styles = theme => ({
     marginTop: theme.spacing(3),
   },
   hasAccountHeader: {
-    width: '100%'
+    width: '100%',
+    paddingTop: '30px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   logInLink: {
     width: '100%',
     textDecoration: 'none',
     color: '#303f9f',
-    fontWeight: 'bolder'
+    fontWeight: 'bolder',
+    padding: '5px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   errorText: {
     color: 'red',
