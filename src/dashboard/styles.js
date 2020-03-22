@@ -8,7 +8,13 @@ const styles = theme => ({
     backgroundColor: '#D8765C',
     height: '35px',
     boxShadow: '0px 0px 2px black',
-    color: 'white'
+    color: 'black'
+  },
+  container: {
+    flexWrap: 'wrap',
+    // flexDirection: 'column',
+    jusifyContent: 'flex-start-safe',
+    alignContent: 'space-between',
   }
 });
 

@@ -7,7 +7,7 @@ import LoginComponent from './login/login';
 import SignupComponent from './signup/signup';
 import DashboardComponent from './dashboard/dashboard';
 import LandingComponent from './landing/landing'
-import App from './app'
+// import App from './app'
 import firebase from 'firebase/app';
 
 // const firebase = require("firebase");

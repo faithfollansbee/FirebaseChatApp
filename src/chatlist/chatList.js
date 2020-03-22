@@ -10,7 +10,11 @@ import styles from './styles';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import NotificationImportant from '@material-ui/icons/NotificationImportant';
+// import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+// import NotificationImportant from '@material-ui/icons/NotificationImportant';
+// import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import FiberNewIcon from '@material-ui/icons/FiberNew';
+const firebase = require("firebase");
 
 class ChatListComponent extends React.Component {
   render() {
@@ -27,9 +31,9 @@ class ChatListComponent extends React.Component {
                       <ListItem onClick={() => this.selectChat(_index)} className={classes.listItem}
                         selected={this.props.selectedChatIndex === _index}>
                           <ListItemAvatar>
-                            <Avatar alt='Remy Sharp'>
+                            <Avatar alt='Remy Sharp' variant='square'>
                               {
-                                _chat.users.filter(_user => _user !== this.props.userEmail)[0].split('')
+                                _chat.users.filter(_user => _user !== this.props.userEmail)[0].split('')[0]
                               }
                             </Avatar>
                           </ListItemAvatar>
@@ -49,7 +53,7 @@ class ChatListComponent extends React.Component {
                           {
                             _chat.receiverHasRead === false && !this.userIsSender(_chat) ?
                             <ListItemIcon>
-                              <NotificationImportant className={classes.unreadMessage}></NotificationImportant>
+                              <FiberNewIcon className={classes.unreadMessage}></FiberNewIcon>
                             </ListItemIcon> : null
                           }
                       </ListItem>
@@ -75,9 +79,22 @@ class ChatListComponent extends React.Component {
     }
   }
 
+  // deleteChat = async (chatIndex) => {
+  //   await this.setState({ selectedChat: chatIndex, newChatFormVisible: false });
+  //   firebase.database().ref("chats").child(chatIndex).remove();
+  // }
+  //
+  // deleteChat = (index) => this.props.deleteChatFn();
+  //   // let id = index.getAttribute('data-id')
+  //   // db.collection('chats').doc(data-id).delete()
+
   newChat = () => this.props.newChatBtnFn();
 
   selectChat = (index) => this.props.selectChatFn(index);
   userIsSender = (chat) => chat.messages[chat.messages.length - 1].sender === this.props.userEmail;
 }
+// <NotificationImportant className={classes.unreadMessage}></NotificationImportant>
+// <ListItemIcon>
+//   <DeleteForeverIcon onClick={this.deleteChat} className={classes.readMessage}></DeleteForeverIcon>
+// </ListItemIcon>
 export default withStyles(styles)(ChatListComponent);

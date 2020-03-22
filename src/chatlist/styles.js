@@ -1,6 +1,6 @@
 const styles = theme => ({
   root: {
-    backgroundColor: '#EEEBDA',
+    backgroundColor: theme.palette.background.paper,
     height: 'calc(100% - 35px)',
     position: 'absolute',
     left: '0',
@@ -9,17 +9,22 @@ const styles = theme => ({
   },
   listItem: {
     cursor: 'pointer',
-    backgroundColor: theme.palette.background.paper,
+    // height: '100px',
+    width: '90%',
+    overflow: 'hidden',
+    // alignItems: 'space-evenly'
+    // position: 'absolute'
   },
   newChatBtn: {
     borderRadius: '0px',
-    background: '#D8765C '
+    backgroundColor: '#D8765C',
   },
   unreadMessage: {
     color: 'red',
     position: 'absolute',
     top: '0',
-    right: '5px'
+    right: '1px',
+    width: '10'
   }
 });
 

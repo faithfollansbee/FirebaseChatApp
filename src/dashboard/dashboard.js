@@ -6,6 +6,7 @@ import ChatViewComponent from '../chatview/chatview';
 import ChatTextBoxComponent from '../chattextbox/chattextbox';
 import NewChatComponent from '../newchat/newchat'
 const firebase = require("firebase");
+
 class DashboardComponent extends React.Component {
   constructor() {
     super();
@@ -20,10 +21,11 @@ class DashboardComponent extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.container}>
         <ChatListComponent
           history={this.props.history}
           newChatBtnFn={this.newChatBtnClicked}
+          deleteChatFn={this.deleteChat}
           selectChatFn={this.selectChat}
           chats={this.state.chats}
           userEmail={this.state.email}
@@ -54,6 +56,11 @@ class DashboardComponent extends React.Component {
     await this.setState({ selectedChat: chatIndex, newChatFormVisible: false });
     this.messageRead();
   }
+
+  // deleteChat = async (selectedChat) => {
+  //   db.collection('chats').doc(id).delete()
+  // }
+
   submitMessage = (msg) => {
     const docKey = this.buildDocKey(this.state.chats[this.state.selectedChat].users.filter(_usr => _usr !== this.state.email)[0]);
     firebase
@@ -87,6 +94,9 @@ class DashboardComponent extends React.Component {
     } else {
       console.log('clicked message, user was sender');
     }
+  }
+  deleteChat = () => {
+
   }
   goToChat = async(docKey, message) => {
     const usersInChat = docKey.split(':');

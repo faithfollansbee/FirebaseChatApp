@@ -6,10 +6,11 @@ const styles = theme => ({
     padding: '25px',
     marginLeft: '300px',
     boxSizing: 'border-box',
-    overflowY: 'scroll',
+    overflowX: 'scroll',
     top: '50px',
     width: 'calc(100% - 300px)',
-    position: 'absolute'
+    position: 'absolute',
+    // flex: '0 1 auto'
   },
 
   userSent: {
