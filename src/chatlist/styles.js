@@ -32,7 +32,6 @@ const styles = theme => ({
     bottom: '0',
     left: '0px',
     width: '300px',
-    borderRadius: '0px'
   },
   unreadMessage: {
     color: 'red',

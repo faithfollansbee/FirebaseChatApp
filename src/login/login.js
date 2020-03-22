@@ -24,7 +24,7 @@ class LoginComponent extends React.Component {
     const { classes } = this.props;
     return (
       <main className={classes.main}>
-        <CssBaseline></CssBaseline>
+        <CssBaseline/>
         <Paper className={classes.paper}>
           <Typography component='h1' variant='h5'> Login!</Typography>
           <form className={classes.form} onSubmit={(e) => this.submitLogin(e)}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './styles';
 import { withStyles } from '@material-ui/core/styles';
+import ChatTextBoxComponent from '../chattextbox/chattextbox';
 
 class ChatViewComponent extends React.Component {
 

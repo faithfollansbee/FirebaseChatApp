@@ -14,7 +14,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 // import NotificationImportant from '@material-ui/icons/NotificationImportant';
 // import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import FiberNewIcon from '@material-ui/icons/FiberNew';
-// const firebase = require("firebase");
+const firebase = require("firebase");
 
 class ChatListComponent extends React.Component {
   render() {
@@ -58,8 +58,8 @@ class ChatListComponent extends React.Component {
                             </ListItemIcon> : null
                           }
                       </ListItem>
-                      <Divider>
-                      </Divider>
+
+                      <Divider/>
                     </div>
                   );
                 })
@@ -89,6 +89,7 @@ class ChatListComponent extends React.Component {
   // deleteChat = (index) => this.props.deleteChatFn();
   //   // let id = index.getAttribute('data-id')
   //   // db.collection('chats').doc(data-id).delete()
+  // <Button onClick={this.newChat} variant='contained' fullWidth className={classes.newChatBtn}> start a new conversation </Button>
 
   newChat = () => this.props.newChatBtnFn();
 

@@ -8,7 +8,7 @@ const styles = theme => ({
     backgroundColor: '#D8765C',
     height: '35px',
     boxShadow: '0px 0px 2px black',
-    color: 'black'
+    color: 'black',
   },
   container: {
     flexWrap: 'wrap',
