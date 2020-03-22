@@ -9,22 +9,20 @@ const styles = theme => ({
   },
   listItem: {
     cursor: 'pointer',
-    // height: '100px',
-    width: '90%',
+    width: '100%',
     overflow: 'hidden',
-    // alignItems: 'space-evenly'
-    // position: 'absolute'
+    position: 'relative'
   },
+
   newChatBtn: {
     borderRadius: '0px',
     backgroundColor: '#D8765C',
   },
   unreadMessage: {
     color: 'red',
-    position: 'absolute',
-    top: '0',
-    right: '1px',
-    width: '10'
+    position: 'relative',
+    width: '30px',
+    height: '30px'
   }
 });
 

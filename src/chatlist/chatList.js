@@ -14,7 +14,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 // import NotificationImportant from '@material-ui/icons/NotificationImportant';
 // import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import FiberNewIcon from '@material-ui/icons/FiberNew';
-const firebase = require("firebase");
+// const firebase = require("firebase");
 
 class ChatListComponent extends React.Component {
   render() {
@@ -40,15 +40,15 @@ class ChatListComponent extends React.Component {
                           <ListItemText
                             primary={_chat.users.filter(_user => _user !== this.props.userEmail)[0]}
                             secondary={
-                              <React.Fragment>
-                                <Typography component='span' color='textPrimary'>
+                              <React.Fragment className={classes.listItemText}>
+                                <Typography color='textPrimary'>
                                   {
-                                    _chat.messages[_chat.messages.length - 1].message.substring(0, 30)
+                                    _chat.messages[_chat.messages.length - 1].message.substring(0, 20)
                                   }
                                 </Typography>
                               </React.Fragment>
-                            }>
-
+                            }
+                            >
                           </ListItemText>
                           {
                             _chat.receiverHasRead === false && !this.userIsSender(_chat) ?
