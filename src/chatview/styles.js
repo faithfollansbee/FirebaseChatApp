@@ -2,6 +2,7 @@ const styles = theme => ({
 
   content: {
     height: 'calc(100vh - 100px)',
+    backgroundColor: theme.palette.background.paper,
     overflow: 'auto',
     padding: '25px',
     marginLeft: '300px',
@@ -9,6 +10,7 @@ const styles = theme => ({
     overflowX: 'scroll',
     top: '50px',
     width: 'calc(100% - 300px)',
+    // backgroundColor: '#C2D5DA',
     position: 'absolute',
     // flex: '0 1 auto'
   },
@@ -20,7 +22,7 @@ const styles = theme => ({
     boxSizing: 'border-box',
     wordWrap: 'break-word',
     marginTop: '10px',
-    backgroundColor: '#C2D5DA',
+    backgroundColor: '#4D648D',
     color: 'white',
     width: '300px',
     borderRadius: '10px'
@@ -33,7 +35,7 @@ const styles = theme => ({
     boxSizing: 'border-box',
     wordWrap: 'break-word',
     marginTop: '10px',
-    backgroundColor: '#C2D5DA',
+    backgroundColor: '#4D648D',
     color: 'white',
     width: '300px',
     borderRadius: '10px'
@@ -42,14 +44,13 @@ const styles = theme => ({
   chatHeader: {
     width: 'calc(100% - 301px)',
     height: '50px',
-    backgroundColor: '#A9A9A9',
+    backgroundColor: '#E3EEF0',
     position: 'fixed',
     marginLeft: '301px',
     fontSize: '18px',
     textAlign: 'center',
-    color: 'white',
     paddingTop: '10px',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
   }
 
 });

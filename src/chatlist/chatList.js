@@ -22,8 +22,9 @@ class ChatListComponent extends React.Component {
     if (this.props.chats.length > 0) {
       return (
         <main className={classes.root}>
-          <Button onClick={this.newChat} variant='contained' fullWidth className={classes.newChatBtn}> new message </Button>
+          <Button variant='contained' fullWidth className={classes.mailbox}>Mailbox</Button>
             <List>
+
               {
                 this.props.chats.map((_chat, _index) => {
                   return (
@@ -64,6 +65,7 @@ class ChatListComponent extends React.Component {
                 })
               }
             </List>
+            <Button onClick={this.newChat} variant='contained' fullWidth className={classes.newChatBtn}> start a new conversation </Button>
         </main>
       );
     } else {

@@ -13,9 +13,8 @@ const styles = theme => ({
   container: {
     flexWrap: 'wrap',
     // flexDirection: 'column',
-    jusifyContent: 'flex-start-safe',
-    alignContent: 'space-between',
-    backgroundColor: 'green'
+    // jusifyContent: 'flex-start-safe',
+    alignContent: 'space-between'
   }
 });
 
