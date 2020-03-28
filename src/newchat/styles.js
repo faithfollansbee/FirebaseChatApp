@@ -14,22 +14,27 @@ const styles = theme => ({
     padding: `${theme.spacing(2)}px ${theme.spacing(3)}px ${theme.spacing(3)}px`,
     position: 'absolute',
     width: '350px',
+    fontFamily: 'Monda, sans-serif',
     top: '50px',
     left: 'calc(50% + 150px - 175px)'
   },
   input: {
+    fontFamily: 'Monda, sans-serif',
   },
   form: {
     width: '100%',
     marginTop: theme.spacing(1),
+    fontFamily: 'Monda, sans-serif',
   },
   submit: {
     marginTop: theme.spacing(3),
-    background: '#D8765C '
+    background: '#D8765C ',
+    fontFamily: 'Monda, sans-serif',
   },
   errorText: {
     color: 'red',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'Monda, sans-serif',
   }
 });
 

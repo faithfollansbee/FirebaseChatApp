@@ -9,6 +9,7 @@ const styles = theme => ({
     height: '35px',
     boxShadow: '0px 0px 2px black',
     color: 'black',
+    fontFamily: 'Monda, sans-serif',
   },
   container: {
     flexWrap: 'wrap',

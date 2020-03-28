@@ -17,11 +17,12 @@ class NewChatComponent extends React.Component {
       <main className={classes.main}>
       <CssBaseline></CssBaseline>
       <Paper className={classes.paper}>
-        <Typography component='h1' variant='h5'>Send a message!</Typography>
+        <h1 component='h1' variant='h5'>Send a message!</h1>
+        <h4 component='h4' variant='h5'>For demo purposes, feel free to message faith@demo.com</h4>
           <form className={classes.form} onSubmit={(e) => this.submitNewChat(e)}>
             <FormControl fullWidth>
               <InputLabel htmlFor='new-chat-username'>
-                Enter your friends email
+                Enter an email of an existing user
               </InputLabel>
               <Input required className={classes.input} autoFocus onChange={(e) => this.userTyping('username', e)} id='new-chat-username'></Input>
             </FormControl>

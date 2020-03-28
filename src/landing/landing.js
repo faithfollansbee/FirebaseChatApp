@@ -1,15 +1,12 @@
 import React from 'react';
-// import LoginComponent from '../login/login';
-// import { Route } from 'react-router-dom';
-// import { Button } from '@material-ui/core';
-// import SignupComponent from '../signup/signup'
+
 import styles from './style'
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-// import Typography from '@material-ui/core/Typography';
-// const firebase = require("firebase");
+import { Spring } from 'react-spring/renderprops';
+import OptionsComponent from './options'
 
 class LandingComponent extends React.Component {
   constructor() {
@@ -22,16 +19,22 @@ class LandingComponent extends React.Component {
     const { classes } = this.props;
 
     return(
-      <main className={classes.main}>
-        <CssBaseline></CssBaseline>
-        <Paper className={classes.paper}>
-          {
-            this.state.email === null ? <div> <Link to='/signup' className={classes.options}>Sign Up</Link>
-            <Link to='/login' className={classes.options}>Log In</Link> </div> :
-            null
-          }
-        </Paper>
-      </main>
+      <Spring
+        from={{ opacity: 0, marginTop: -500 }}
+        to={{ opacity: 1, marginTop: 0 }}
+        config={{ duration: 1000 }}
+      >
+        { props => (
+          <div style={props}>
+            <div className={classes.rootStyle}>
+              <div className={classes.logo}>
+                <img src={require('./Logo.png')} alt="ChitChat-logo"/>
+              </div>
+            <OptionsComponent />
+            </div>
+          </div>
+        )}
+      </Spring>
     )
   }
 };

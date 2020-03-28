@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'firebase/storage';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import LoginComponent from './login/login';
@@ -34,7 +35,12 @@ const routing = (
     </div>
   </Router>
 );
+const storage = firebase.storage();
 
 ReactDOM.render(routing, document.getElementById('root'));
 
 serviceWorker.unregister();
+
+export {
+    storage, firebase as default
+}

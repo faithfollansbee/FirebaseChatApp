@@ -23,33 +23,35 @@ class LoginComponent extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <main className={classes.main}>
-        <CssBaseline/>
-        <Paper className={classes.paper}>
-          <Typography component='h1' variant='h5'> Login!</Typography>
-          <form className={classes.form} onSubmit={(e) => this.submitLogin(e)}>
-            <FormControl required fullWidth margin='normal'>
-              <InputLabel htmlFor='login-email-input'>Enter your email</InputLabel>
-              <Input autoComplete='email' autoFocus id='login-email-input' onChange={(e) => this.userTyping('email', e)}></Input>
-            </FormControl>
+      <div className={classes.rootStyle}>
+        <main className={classes.main}>
+          <CssBaseline/>
+          <Paper className={classes.paper}>
+            <h1 component='h1' variant='h5'> Login!</h1>
+            <form className={classes.form} onSubmit={(e) => this.submitLogin(e)}>
+              <FormControl required fullWidth margin='normal'>
+                <InputLabel htmlFor='login-email-input'>Enter your email</InputLabel>
+                <Input autoComplete='email' autoFocus id='login-email-input' onChange={(e) => this.userTyping('email', e)}></Input>
+              </FormControl>
 
-            <FormControl required fullWidth margin='normal'>
-              <InputLabel htmlFor='login-password-input'>Enter your password </InputLabel>
-              <Input type='password' id='login-password-input' onChange={(e) => this.userTyping('password', e)}></Input>
-            </FormControl>
-            <Button type='submit' fullWidth variant='contained' className={classes.submit}>Login</Button>
-          </form>
-          {
-            this.state.loginError ?
-            <Typography component='h5' variant='h6' className={classes.errorText}>
-              Incorrect login info
-            </Typography> :
-            null
-          }
-          <Typography component='h5' variant='h6' className={classes.noAccountHeader}> Don't have an account? </Typography>
-          <Link className={classes.signUpLink} to='/signup'>Sign up!</Link>
-        </Paper>
-      </main>
+              <FormControl required fullWidth margin='normal'>
+                <InputLabel htmlFor='login-password-input'>Enter your password </InputLabel>
+                <Input type='password' id='login-password-input' onChange={(e) => this.userTyping('password', e)}></Input>
+              </FormControl>
+              <Button type='submit' fullWidth variant='contained' className={classes.submit}>Login</Button>
+            </form>
+            {
+              this.state.loginError ?
+              <Typography component='h5' variant='h6' className={classes.errorText}>
+                Incorrect login info
+              </Typography> :
+              null
+            }
+            <Typography component='h5' variant='h6' className={classes.noAccountHeader}> Don't have an account? </Typography>
+            <Link className={classes.signUpLink} to='/signup'>Sign up!</Link>
+          </Paper>
+        </main>
+      </div>
     )
   }
   userTyping = (type, e) => {

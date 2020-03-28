@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles';
+// import ImageUpload from '../imageupload/imageUpload'
 import { withStyles } from '@material-ui/core/styles';
 import ChatTextBoxComponent from '../chattextbox/chattextbox';
 

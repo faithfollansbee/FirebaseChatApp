@@ -51,6 +51,7 @@ const styles = theme => ({
     textAlign: 'center',
     paddingTop: '10px',
     boxSizing: 'border-box',
+    fontFamily: 'Monda, sans-serif',
   }
 
 });

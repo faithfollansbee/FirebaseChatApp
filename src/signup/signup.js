@@ -28,38 +28,40 @@ class SignupComponent extends React.Component {
     const { classes } = this.props;
 
     return (
-      <main className={classes.main}>
-        <CssBaseline/>
-        <Paper className={classes.paper}>
-          <Typography component="h1" variant="h5">
-            Sign Up!
-          </Typography>
-          <form onSubmit={(e) => this.submitSignup(e)} className={classes.form}>
-            <FormControl required fullWidth margin='normal'>
-              <InputLabel htmlFor='signup-email-input'>Enter Your Email</InputLabel>
-              <Input autoComplete='email' autoFocus onChange={(e) => this.userTyping('email', e)} id='signup-email-input'></Input>
-            </FormControl>
-            <FormControl required fullWidth margin='normal'>
-              <InputLabel htmlFor='signup-password-input'>Create A Password</InputLabel>
-              <Input type="password" onChange={(e) => this.userTyping('password', e)} id='signup-password-input'></Input>
-            </FormControl>
-            <FormControl required fullWidth margin='normal'>
-              <InputLabel htmlFor='signup-password-confirmation-input'>Confirm Your Password</InputLabel>
-              <Input type="password" onChange={(e) => this.userTyping('passwordConfirmation', e)} id='signup-password-confirmation-input'></Input>
-            </FormControl>
-            <Button type='submit' fullWidth variant='contained' className={classes.submit}>Submit</Button>
-          </form>
-          {
-            this.state.signupError ?
-            <Typography className={classes.errorText} component='h5' variant='h6'>
-              {this.state.signupError}
-            </Typography> :
-            null
-          }
-          <Typography component='h5' variant='h6' className={classes.hasAccountHeader}> Already have an account? </Typography>
-          <Link className={classes.logInLink} to='/login'>Log In!</Link>
-        </Paper>
-      </main>
+      <div className={classes.rootStyle}>
+        <main className={classes.main}>
+          <CssBaseline/>
+          <Paper className={classes.paper}>
+            <h1 component="h1" variant="h5">
+              Sign Up!
+            </h1>
+            <form onSubmit={(e) => this.submitSignup(e)} className={classes.form}>
+              <FormControl required fullWidth margin='normal'>
+                <InputLabel htmlFor='signup-email-input'>Enter your email</InputLabel>
+                <Input autoComplete='email' autoFocus onChange={(e) => this.userTyping('email', e)} id='signup-email-input'></Input>
+              </FormControl>
+              <FormControl required fullWidth margin='normal'>
+                <InputLabel htmlFor='signup-password-input'>Choose a 6 digit password</InputLabel>
+                <Input type="password" onChange={(e) => this.userTyping('password', e)} id='signup-password-input'></Input>
+              </FormControl>
+              <FormControl required fullWidth margin='normal'>
+                <InputLabel htmlFor='signup-password-confirmation-input'>Confirm your password</InputLabel>
+                <Input type="password" onChange={(e) => this.userTyping('passwordConfirmation', e)} id='signup-password-confirmation-input'></Input>
+              </FormControl>
+              <Button type='submit' fullWidth variant='contained' className={classes.submit}>Submit</Button>
+            </form>
+            {
+              this.state.signupError ?
+              <Typography className={classes.errorText} component='h5' variant='h6'>
+                {this.state.signupError}
+              </Typography> :
+              null
+            }
+            <Typography component='h5' variant='h6' className={classes.hasAccountHeader}> Already have an account? </Typography>
+            <Link className={classes.logInLink} to='/login'>Log In!</Link>
+          </Paper>
+        </main>
+      </div>
     );
   }
 

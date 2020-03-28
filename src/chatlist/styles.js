@@ -8,6 +8,7 @@ const styles = theme => ({
     left: '0',
     width: '300px',
     boxShadow: '0px 0px 2px black',
+    fontFamily: 'Monda, sans-serif',
     // backgroundColor: '#283655'
   },
   listItem: {
@@ -15,7 +16,8 @@ const styles = theme => ({
     width: '100%',
     overflow: 'hidden',
     borderRadius: '0px',
-    position: 'relative'
+    position: 'relative',
+    fontFamily: 'Monda, sans-serif',
   },
   mailbox: {
     borderRadius: '0px',
@@ -23,7 +25,11 @@ const styles = theme => ({
     position: 'relative',
     left: '0px',
     top: '0',
-    width: '300px'
+    width: '300px',
+    fontFamily: 'Monda, sans-serif',
+  },
+  avatar: {
+    fontFamily: 'Monda, sans-serif',
   },
   newChatBtn: {
     borderRadius: '0px',
@@ -32,6 +38,7 @@ const styles = theme => ({
     bottom: '0',
     left: '0px',
     width: '300px',
+    fontFamily: 'Monda, sans-serif',
   },
   unreadMessage: {
     color: 'red',

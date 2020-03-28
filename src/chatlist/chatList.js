@@ -7,6 +7,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import styles from './styles';
+// import ImageUpload from '../imageupload/imageUpload'
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -31,13 +32,13 @@ class ChatListComponent extends React.Component {
                     <div key={_index}>
                       <ListItem onClick={() => this.selectChat(_index)} className={classes.listItem}
                         selected={this.props.selectedChatIndex === _index}>
-                          <ListItemAvatar>
-                            <Avatar alt='Remy Sharp' variant='square'>
-                              {
-                                _chat.users.filter(_user => _user !== this.props.userEmail)[0].split('')[0]
-                              }
-                            </Avatar>
-                          </ListItemAvatar>
+                        <ListItemAvatar className={classes.avatar}>
+                         <Avatar alt='Remy Sharp' variant='square'>
+                           {
+                             _chat.users.filter(_user => _user !== this.props.userEmail)[0].split('')[0]
+                           }
+                         </Avatar>
+                       </ListItemAvatar>
                           <ListItemText
                             primary={_chat.users.filter(_user => _user !== this.props.userEmail)[0]}
                             secondary={
