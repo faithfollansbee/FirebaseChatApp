@@ -15,7 +15,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
     // flexDirection: 'column',
     // jusifyContent: 'flex-start-safe',
-    alignContent: 'space-between'
+    alignContent: 'space-between',
   }
 });
 

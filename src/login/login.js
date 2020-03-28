@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles';
+import { Spring } from 'react-spring/renderprops';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
@@ -23,35 +24,46 @@ class LoginComponent extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.rootStyle}>
-        <main className={classes.main}>
-          <CssBaseline/>
-          <Paper className={classes.paper}>
-            <h1 component='h1' variant='h5'> Login!</h1>
-            <form className={classes.form} onSubmit={(e) => this.submitLogin(e)}>
-              <FormControl required fullWidth margin='normal'>
-                <InputLabel htmlFor='login-email-input'>Enter your email</InputLabel>
-                <Input autoComplete='email' autoFocus id='login-email-input' onChange={(e) => this.userTyping('email', e)}></Input>
-              </FormControl>
+      <Spring
+        from={{ opacity: 0, marginTop: -500 }}
+        to={{ opacity: 1, marginTop: 0 }}
+        config={{ duration: 300 }}
+      >
+        { props => (
+          <div style={props}>
+            <div className={classes.rootStyle}>
+              <main className={classes.main}>
+                <CssBaseline/>
+                <Paper className={classes.paper}>
+                  <h1 component='h1' variant='h5'> Login!</h1>
+                  <form className={classes.form} onSubmit={(e) => this.submitLogin(e)}>
+                    <FormControl required fullWidth margin='normal'>
+                      <InputLabel htmlFor='login-email-input'>Enter your email</InputLabel>
+                      <Input autoComplete='email' autoFocus id='login-email-input' onChange={(e) => this.userTyping('email', e)}></Input>
+                    </FormControl>
 
-              <FormControl required fullWidth margin='normal'>
-                <InputLabel htmlFor='login-password-input'>Enter your password </InputLabel>
-                <Input type='password' id='login-password-input' onChange={(e) => this.userTyping('password', e)}></Input>
-              </FormControl>
-              <Button type='submit' fullWidth variant='contained' className={classes.submit}>Login</Button>
-            </form>
-            {
-              this.state.loginError ?
-              <Typography component='h5' variant='h6' className={classes.errorText}>
-                Incorrect login info
-              </Typography> :
-              null
-            }
-            <Typography component='h5' variant='h6' className={classes.noAccountHeader}> Don't have an account? </Typography>
-            <Link className={classes.signUpLink} to='/signup'>Sign up!</Link>
-          </Paper>
-        </main>
-      </div>
+                    <FormControl required fullWidth margin='normal'>
+                      <InputLabel htmlFor='login-password-input'>Enter your password </InputLabel>
+                      <Input type='password' id='login-password-input' onChange={(e) => this.userTyping('password', e)}></Input>
+                    </FormControl>
+                    <Button type='submit' fullWidth variant='contained' className={classes.submit}>Login</Button>
+                  </form>
+                  {
+                    this.state.loginError ?
+                    <Typography component='h5' variant='h6' className={classes.errorText}>
+                      Incorrect login info
+                    </Typography> :
+                    null
+                  }
+                  <Typography component='h5' variant='h6' className={classes.noAccountHeader}> Don't have an account? </Typography>
+                  <Link className={classes.signUpLink} to='/signup'>Sign up!</Link>
+                </Paper>
+              </main>
+            </div>
+          </div>
+        )}
+        </Spring>
+
     )
   }
   userTyping = (type, e) => {

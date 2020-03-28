@@ -1,5 +1,4 @@
 const styles = theme => ({
-
   content: {
     height: 'calc(100vh - 100px)',
     backgroundColor: theme.palette.background.paper,
@@ -10,9 +9,7 @@ const styles = theme => ({
     overflowX: 'scroll',
     top: '50px',
     width: 'calc(100% - 300px)',
-    // backgroundColor: '#C2D5DA',
     position: 'absolute',
-    // flex: '0 1 auto'
   },
 
   userSent: {

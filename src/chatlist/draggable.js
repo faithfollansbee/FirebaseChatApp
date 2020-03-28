@@ -1,6 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -10,7 +12,6 @@ import styles from './styles';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 import FiberNewIcon from '@material-ui/icons/FiberNew';
 const firebase = require("firebase");
@@ -58,7 +59,12 @@ class ChatListComponent extends React.Component {
                               </ListItemIcon> : null
                             }
                           </ListItemSecondaryAction>
-
+                          {
+                            _chat.receiverHasRead === false && !this.userIsSender(_chat) ?
+                            <ListItemIcon>
+                              <FiberNewIcon className={classes.unreadMessage}></FiberNewIcon>
+                            </ListItemIcon> : null
+                          }
                       </ListItem>
 
                       <Divider/>
